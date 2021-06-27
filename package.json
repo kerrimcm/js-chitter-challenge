@@ -1,15 +1,24 @@
 {
   "name": "js-chitter-challenge",
   "version": "1.0.0",
-  "description": "",
+  "description": "Redo of this challenge, testing in Jest: https://github.com/kerrimcm/frontend-api-challenge",
   "main": "index.js",
   "scripts": {
-    "test": "jest"
+    "test": "jest --coverage"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/kerrimcm/js-chitter-challenge.git"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/kerrimcm/js-chitter-challenge/issues"
+  },
+  "homepage": "https://github.com/kerrimcm/js-chitter-challenge#readme",
   "devDependencies": {
+    "axios": "^0.21.1",
     "jest": "^27.0.5"
   }
 }
