@@ -1,14 +1,14 @@
 <!DOCTYPE html>
 <head>
   <title>Chitter</title>
-  <script src="src/peepController.js"></script>
 </head>
 <body>
   <h1>Chitter Feed</h1>
   <div id="main"></div>
   
-  <script>
-   
+  <script src="src/allPeepsDisplay.js">
+    const peepsUrl = 'https://chitter-backend-api-v2.herokuapp.com/peeps';
+    displayPeeps(peepsUrl);
   </script>
 </body>
 </html>

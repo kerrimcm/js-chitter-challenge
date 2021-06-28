@@ -4,7 +4,6 @@ Redo of this challenge, testing in Jest: https://github.com/kerrimcm/frontend-ap
 
 Using repo to practice mocking API calls
 
-
 ---------
 import axios from 'axios';
 import Users from './users';
