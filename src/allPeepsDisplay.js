@@ -35,4 +35,27 @@ const displayPeep = (id) => {
     single.appendChild(body)
   })
 }
-  
+
+const handleInput = document.getElementById('handle').value;
+const passwordInput = document.getElementById('password').value;
+
+let form = document.getElementById("signup")
+let button = document.getElementById("button")
+button.addEventListener('click', () => {createUser()})
+
+form.addEventListener('submit', () => {async () => {
+  const formData = new FormData(form).entries()
+  const response = await fetch("https://chitter-backend-api-v2.herokuapp.com/users", {
+  method: 'POST',
+  headers: {
+    'Content-Type': 'application/json'
+  },
+  body: JSON.stringify({"user": {"handle": "peepeepeepee", "password": "poopoopoopoo"}})
+})
+const result = await response.json()
+console.log(result);
+}
+})
+
+
+
