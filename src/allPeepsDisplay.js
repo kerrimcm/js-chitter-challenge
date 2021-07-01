@@ -6,18 +6,29 @@ const fetchData = () => {
   .then(res => res.json())
   .then(json => json.forEach((post) => {
     let list = document.createElement("ul");
-    let body = document.createElement("p");
+    let peepBody = document.createElement("p");
+    let peepInfo = document.createElement("p");
     let button = document.createElement("button");
-    body.innerHTML = `${post.user.handle}: ${post.body}`
+    let creation = createdAt(post.created_at)
+    peepBody.innerHTML = post.body
+    peepInfo.innerHTML = `by ${post.user.handle} at ${creation}`
     button.innerHTML = "View peep"
     button.addEventListener('click', () => {displayPeep(post.id)});
-    body.appendChild(button);
-    list.appendChild(body);
+    peepBody.appendChild(peepInfo)
+    peepBody.appendChild(button);
+    list.appendChild(peepBody);
     main.appendChild(list);
   }))
 }
 
 fetchData()
+
+function createdAt(timestamp) {
+  let dateTime = timestamp.split('T')
+  let date = dateTime[0].split('-')
+  let time = dateTime[1].split(':')
+  return `${time[0]}:${time[1]} on ${date[2]}/${date[1]}/${date[0]}`
+}
 
 const displayPeep = (id) => {
   fetch(`https://chitter-backend-api-v2.herokuapp.com/peeps/${id}`)
