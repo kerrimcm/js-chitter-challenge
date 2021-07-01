@@ -36,24 +36,26 @@ const displayPeep = (id) => {
   })
 }
 
-const handleInput = document.getElementById('handle').value;
-const passwordInput = document.getElementById('password').value;
-
-let form = document.getElementById("signup")
-
-form.addEventListener('submit', () => { async () => {
-  const formData = new FormData(form).entries()
-  const response = await fetch("https://chitter-backend-api-v2.herokuapp.com/users", {
-  method: 'POST',
-  headers: {
-    'Content-Type': 'application/json'
-  },
-  body: JSON.stringify({"user": {"handle": handleInput, "password": passwordInput}})
-  })
-  const result = await response.json()
-  console.log(result);
-  }
+document.getElementById('signup').addEventListener('submit', (event) => {
+  event.preventDefault()
+  let handle = document.getElementById('handle')
+  let password = document.getElementById('password')
+  createNewUser(handle.value, password.value)
+  handle.value = null
+  password.value = null
 })
 
-
-
+async function createNewUser(handle, password) {
+  await fetch("https://chitter-backend-api-v2.herokuapp.com/users", {
+    method: 'POST',
+    headers: {'Content-Type': 'application/json'},
+    body: JSON.stringify({user: {"handle": handle, "password": password}})
+  })
+  .then(response => response.json())
+  .then(data => {
+    console.log('Success:', data);
+  })
+  .catch((error) => {
+    console.error('Error:', error);
+  });
+}
