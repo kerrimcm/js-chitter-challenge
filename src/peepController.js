@@ -70,3 +70,27 @@ async function createNewUser(handle, password) {
     console.error('Error:', error);
   });
 }
+
+document.getElementById('signin').addEventListener('submit', (event) => {
+  event.preventDefault()
+  let signinHandle = document.getElementById('signinHandle')
+  let signinPassword = document.getElementById('signinPassword')
+  createSession(signinHandle.value, signinPassword.value)
+  signinHandle.value = null
+  signinPassword.value = null
+})
+
+async function createSession(handle, password) {
+  await fetch("https://chitter-backend-api-v2.herokuapp.com/sessions", {
+    method: 'POST',
+    headers: {'Content-Type': 'application/json'},
+    body: JSON.stringify({"session": {"handle":handle, "password":password}})
+  })
+  .then(response => response.json())
+  .then(data => {
+    console.log('Success:', data);
+  })
+  .catch((error) => {
+    console.error('Error:', error);
+  });
+}
